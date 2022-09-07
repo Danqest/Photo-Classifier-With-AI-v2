@@ -1,0 +1,12 @@
+.dark-content {
+  background-color: #313131!important;
+}
+
+#header.dark-content .active .pro-item-content {
+  color: blue!important;
+}
+
+#header.dark-content .pro-menu-item:not(.active) .pro-item-content:hover {
+  color: rgb(195, 255, 0)!important;
+  background-color: blueviolet!important;
+}

@@ -1,0 +1,42 @@
+[
+    {
+        "subfolderName": "0",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "1",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "2",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "3",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "4",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "5",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "6",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "7",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "8",
+        "parentCollection": "MNIST"
+    },
+    {
+        "subfolderName": "9",
+        "parentCollection": "MNIST"
+    }    
+]

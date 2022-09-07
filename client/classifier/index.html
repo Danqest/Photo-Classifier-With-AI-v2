@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Transfer Learning - TensorFlow.js</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&family=Roboto+Slab&display=swap" rel="stylesheet">
+    <!-- <script type="module" src="script_thumbnail.js"></script> -->
+    <script type="module" src="script.js"></script>
+  </head>  
+  <body>
+    <h1>Customize Your Photo Classifier</h1>
+    
+    <p id="status">STATUS: Awaiting MobileNet Model Load...</p>
+    <p id="subStatus"></p>
+
+    <div class="row">
+    <button id="loadData">Load Data</button>
+    <button id="trainModel">Train & Predict</button>
+    </div>
+
+    <div class="categoryContainer">
+      <div class="field_wrapper" id="field_wrapper">
+        <p>- - -</p>
+        <h2>Classifier Categories</h2>
+        <p>Name Up To 10 Unqiue Categories Below (At Least Two Required) - Use More Sample Images For Better Accuracy!</p>
+        <div>
+          <input type="text" class="categoryName" name="category_name[]" value="cat0"/>
+          <a href="javascript:void(0);" class="locked_button" title="Locked field"><img src="images/lock.png" alt=""></a>
+          <label for="files">Select sample images for this category: </label>
+          <input id="files0" class="trainData" type="file" multiple accept="image/jpeg, image/png, image/jpg"/>
+          <div class="row" id="result0">
+            <!-- <output id="result0"></output> -->
+          </div>
+        </div>
+        <div>
+          <input type="text" class="categoryName" name="category_name[]" value="cat1"/>
+          <a href="javascript:void(0);" class="add_button" id="add_button" title="Add field"><img src="images/add.png" alt=""></a>
+          <label for="files">Select sample images for this category: </label>
+          <input id="files1" class="trainData" type="file" multiple accept="image/jpeg, image/png, image/jpg"/>
+          <div class="row" id="result1">
+            <!-- <output id="result1"></output> -->
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+      <div>
+        <p>- - -</p>
+        <label for="files">Select all other images you want organized: </label>
+        <input id="files-unorganized" class="testData" type="file" multiple/>
+        <output id="result-unorganized"></output>
+      </div>
+    
+    <!-- <button id="loadScript">Load Script</button> -->
+
+    <!-- <button id="predictUnorganized">Predict</button> -->
+    
+
+
+
+
+
+
+    <script>
+      $(document).ready(function(){
+        var maxField = 9;
+        var addButton = $('.add_button');
+        var wrapper = $('.field_wrapper');
+        var trainData = $('.trainData')
+        var x = 1; //Initial field counter is 1
+
+        // Once add button is clicked
+        $(addButton).click(function() {
+          if(x<maxField){
+            x++; //Increment field counter
+            $(wrapper).append('<div><input type="text" class="categoryName" name="category_name[]" value="cat'+x+'"/><a href="javascript:void(0);" class="remove_button" title="Delete field"> <img src="images/delete.png" alt=""></a><label for="files"> Select sample images for this category: </label><input id="files'+x+'" class="trainData" type="file" multiple accept="image/jpeg, image/png, image/jpg"/><div class="row" id="result'+x+'"/>'); //Add field html
+          }
+        })
+
+        // Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function(e){
+          e.preventDefault();
+          $(this).parent('div').remove(); //Remove field html
+          x--; //Decrement field counter
+        })
+
+        // Event delegation to display thumbnails when files uploaded per category
+        document.querySelector('.field_wrapper').addEventListener('change', event => {
+          if (event.target.matches('.trainData')) {
+            var output = event.target.nextElementSibling
+            // console.log(output)
+            while (output.firstChild) {
+                output.removeChild(output.firstChild)
+            }
+
+            var files = event.target.files; //FileList object  
+            for(let i = 0; i< files.length; i++) {
+                var file = files[i];                
+                //Only pics
+                if(!file.type.match('image'))
+                  continue;
+                var picReader = new FileReader();
+                picReader.addEventListener("load",function(event){
+                    var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<img class='trainThumbnail' src='" + picFile.result + "' id='trainFile" + i + 
+                    "'/>"
+                    output.insertBefore(div,null);            
+                    }
+                );
+                  //Read the image
+                picReader.readAsDataURL(file);
+            }
+          }
+        })
+      });
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+body{
+    background: radial-gradient(#e5e5e5, #ffffff, #e5e5e5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    flex-direction: row;
+    
+}
+
+
+
+.card {
+    width: 20rem;
+    margin-bottom: 2rem;
+    margin-top: 8rem;
+    margin-left: 1rem;
+
+    
+}
+
+.card:hover{
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253)
+}
+
+.card-body{
+    padding: 3rem 0;
+}
+
+.card-text{
+    font-size:0.9rem;
+    padding: 0.4rem 1.9rem;
+}
+
+.card-img-top{
+    transform:scale(1);
+}
+
