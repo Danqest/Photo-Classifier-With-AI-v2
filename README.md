@@ -8,7 +8,7 @@ This project is a clone of another hosted under my respositories - https://githu
 HTML, CSS, JavaScript, Bootstrap, ML5, MongoDB/Mongoose, Express, React, Node, Apollo
 
 
-## 🏆 Credits
+## 🏆 Original Project Credits
 
 - [Colin Brooks](https://github.com/Danqest)
 - [Alfredo Figueroa](https://github.com/supanov)
